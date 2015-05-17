@@ -64,7 +64,7 @@ class SuiteCRMPackageBuilder{
         if($manifestDetails['manifest']['type'] !== 'module'){
             echo "suitecrmpackagebuilder only supports module packages currently.\n";
             return;
-        }var_dump($this);
+        }//var_dump($this);
         //var_dump($manifestDetails);
 
         $zip = new ZipArchive();
@@ -73,7 +73,7 @@ class SuiteCRMPackageBuilder{
             return;
         }
         $this->log("Processing ".$manifestDetails['installdefs']['id'] ." - ".$manifestDetails['manifest']['name']);
-
+	$zip->addFile($this->targetManifest,"manifest.php");
         $this->processInstallDefs($manifestDetails['installdefs'],$zip);
 
         //TODO process upgrade manifest
